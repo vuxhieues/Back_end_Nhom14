@@ -22,28 +22,36 @@ import lombok.NoArgsConstructor;
 @Table(name = "Result")
 public class Result {
 
+    // Kết quả kì thi
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long resultId;
 
+    // Điểm
     private int mark;
 
+    // Trạng thái vd: đã hoàn thành, chưa hoàn thành...
     private String status;
 
+    // Xác định mối quan hệ n-1 với user. Set userId là khóa ngoại của result
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "userId", insertable = false, updatable=false)
     private User user;
 
+    //  Xác định mối quan hệ n-1 với exam. Set examId là khóa ngoại của result
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "examId", insertable = false, updatable=false)
     private Exam exam;
 
+    //Khóa ngoại
     private Long userId;
 
+    //Khóa ngoại
     private Long examId;
 
+    //Constructor
     public Result(Long userId, Long examId, int score, String status) {
         this.mark = mark;
         this.status = status;
