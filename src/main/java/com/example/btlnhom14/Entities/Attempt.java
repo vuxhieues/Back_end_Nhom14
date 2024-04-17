@@ -27,6 +27,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "Attempt")
 public class Attempt {
 
+    // Đây là bảng về thực hiện bài thi. Một bài thi có thể tham gia bởi nhiều người và một bài thi có thể được khởi tạo nhiều lần
+    // Đây là id GenerationType.IDENTITY là tự động tăng 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long attemptId;
@@ -40,13 +42,17 @@ public class Attempt {
     private Date end;
 
     @ManyToOne
+    // Xác định mối quan hệ n-1 với user
     @JsonIgnore
     @JoinColumn(name = "id", insertable = false, updatable=false)
+// JoinColumn là xác định khóa ngoại ánh xạ sang table user với khóa ngoại là userId
     private User user;
 
     @ManyToOne
+// xác định mối quan hệ n-1 với exam
     @JsonIgnore
     @JoinColumn(name = "examId", insertable = false, updatable=false)
+ // JoinColumn là xác định khóa ngoại ánh xạ sang table exam với khóa ngoại là examId
     private Exam exam;
 
     private Long userId;
