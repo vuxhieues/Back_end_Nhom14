@@ -55,7 +55,7 @@ public class Question {
     @JoinColumn(name = "examId", insertable = false, updatable=false)
     private Exam exam;
 
-    
+    // Cái này là set QuestionId làm khóa ngoại của bảng userAnswer
     @OneToMany(cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinColumn(name = "questionId", insertable = false, updatable=false)
