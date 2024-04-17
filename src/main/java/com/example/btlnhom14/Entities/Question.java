@@ -26,22 +26,28 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Question {
 
+    // Bảng liệt kê các câu hỏi 
+    //  GenerationType.IDENTITY
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long questionId;
 
+    // Nội dung câu hỏi
     private String questionText;
 
+    // Đáp án A
     private String OptA;
-
+    // Đáp án B
     private String OptB;
-
+    // Đáp án C
     private String OptC;
-
+    // Đáp án D
     private String OptD;
 
+    // Câu trả lời
     private String Answer;
 
+    // Khóa ngoại ánh xạ với joinColum bảng exam ở bên dưới
     private Long examId;
 
     @ManyToOne
@@ -49,6 +55,7 @@ public class Question {
     @JoinColumn(name = "examId", insertable = false, updatable=false)
     private Exam exam;
 
+    
     @OneToMany(cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinColumn(name = "questionId", insertable = false, updatable=false)
