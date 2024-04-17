@@ -51,7 +51,7 @@ public class Result {
     //Khóa ngoại
     private Long examId;
 
-    //Constructor
+    //Constructor k liên quan đến csdl
     public Result(Long userId, Long examId, int score, String status) {
         this.mark = mark;
         this.status = status;
