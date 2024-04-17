@@ -35,26 +35,32 @@ import lombok.NoArgsConstructor;
 @Table(name = "User")
 public class User implements UserDetails {
 
-
+    // Người dùng
+    // GenerationType.IDENTITY khóa tự động tăng
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
+    //Tài khoản
     private String password;
 
+    // Mật khẩu
     private String username;
 
+    // Chức vụ. Mình có 2 chức vụ là USER và ADMIN
     private String role;
 
+    // Xác định mối quan hệ 1-n với results
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Result> Results;
 
+    // Xác định mối quan hệ 1-n với attempt
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Attempt> Attempts;
 
-
+    // Mấy hàm dưới này liên quan đến bảo mật k liên quan đến csdl
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_" + getRole().toUpperCase()));
