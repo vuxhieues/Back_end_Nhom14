@@ -55,7 +55,7 @@ public class UserAnswerController {
 		return userAnswerService.createUserAnswer(userAnswer);
 	}
 	
-	@GetMapping("/{userAnswerId}")
+	@DeleteMapping("/{userAnswerId}")
 	public ResponseEntity<?> deleteUserAnswer(@PathVariable("userAnswerId") Long userAnswerId){
 		return userAnswerService.deleteUserAnswer(userAnswerId);
 	}
