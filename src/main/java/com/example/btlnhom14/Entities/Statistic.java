@@ -22,18 +22,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Statistic {
 
+    // Thống kê của bài thi.
+    // GenerationType.IDENTITY khóa tự động tăng
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long statisticId;
 
+    //Tổng số người tham gia
     private int totalJoin;
 
+    // % hoàn thành
     private double complete;
 
+    // Điểm trung bình
     private double averageMark;
 
+    // Tên bài thi
     private String examName;
 
+    // Mối quan hệ 1-1. examId là khóa ngoại của Statistic
     @OneToOne
     @JoinColumn(name = "examId", insertable = false, updatable = false)
     @JsonIgnore
